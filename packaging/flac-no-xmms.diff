@@ -1,0 +1,17 @@
+Index: configure.in
+===================================================================
+--- configure.in.orig
++++ configure.in
+@@ -225,9 +225,9 @@ AC_HELP_STRING([--disable-xmms-plugin],
+ 	no)  enable_xmms_plugin=false ;;
+ 	*) AC_MSG_ERROR(bad value ${enableval} for --enable-xmms-plugin) ;;
+ esac],[enable_xmms_plugin=true])
+-if test "x$enable_xmms_plugin" != xfalse ; then
+-	AM_PATH_XMMS(0.9.5.1, , AC_MSG_WARN([*** XMMS >= 0.9.5.1 not installed - XMMS support will not be built]))
+-fi
++dnl if test "x$enable_xmms_plugin" != xfalse ; then
++dnl 	AM_PATH_XMMS(0.9.5.1, , AC_MSG_WARN([*** XMMS >= 0.9.5.1 not installed - XMMS support will not be built]))
++dnl fi
+ AM_CONDITIONAL(FLaC__HAS_XMMS, test -n "$XMMS_INPUT_PLUGIN_DIR")
+ 
+ dnl build FLAC++ or not
