@@ -1,0 +1,73 @@
+--- src/libFLAC/metadata_iterators.c.orig
++++ src/libFLAC/metadata_iterators.c
+@@ -438,10 +438,10 @@ static FLAC__bool simple_iterator_prime_
+ 
+ 	FLAC__ASSERT(0 != iterator);
+ 
+-	if(read_only || 0 == (iterator->file = fopen(iterator->filename, "r+b"))) {
++	if(read_only || 0 == (iterator->file = fopen(iterator->filename, "r+be"))) {
+ 		iterator->is_writable = false;
+ 		if(read_only || errno == EACCES) {
+-			if(0 == (iterator->file = fopen(iterator->filename, "rb"))) {
++			if(0 == (iterator->file = fopen(iterator->filename, "rbe"))) {
+ 				iterator->status = FLAC__METADATA_SIMPLE_ITERATOR_STATUS_ERROR_OPENING_FILE;
+ 				return false;
+ 			}
+@@ -1380,7 +1380,7 @@ static FLAC__bool chain_rewrite_metadata
+ 
+ 	FLAC__ASSERT(0 != chain->filename);
+ 
+-	if(0 == (file = fopen(chain->filename, "r+b"))) {
++	if(0 == (file = fopen(chain->filename, "r+be"))) {
+ 		chain->status = FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE;
+ 		return false;
+ 	}
+@@ -1405,7 +1405,7 @@ static FLAC__bool chain_rewrite_file_(FL
+ 	FLAC__ASSERT(0 != chain->head);
+ 
+ 	/* copy the file prefix (data up to first metadata block */
+-	if(0 == (f = fopen(chain->filename, "rb"))) {
++	if(0 == (f = fopen(chain->filename, "rbe"))) {
+ 		chain->status = FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE;
+ 		return false;
+ 	}
+@@ -1542,7 +1542,7 @@ static FLAC__bool chain_read_(FLAC__Meta
+ 
+ 	chain->is_ogg = is_ogg;
+ 
+-	if(0 == (file = fopen(filename, "rb"))) {
++	if(0 == (file = fopen(filename, "rbe"))) {
+ 		chain->status = FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE;
+ 		return false;
+ 	}
+@@ -3240,7 +3240,7 @@ FLAC__bool open_tempfile_(const char *fi
+ 		strcat(*tempfilename, tempfile_suffix);
+ 	}
+ 
+-	if(0 == (*tempfile = fopen(*tempfilename, "w+b"))) {
++	if(0 == (*tempfile = fopen(*tempfilename, "w+be"))) {
+ 		*status = FLAC__METADATA_SIMPLE_ITERATOR_STATUS_ERROR_OPENING_FILE;
+ 		return false;
+ 	}
+--- src/libFLAC/stream_decoder.c.orig
++++ src/libFLAC/stream_decoder.c
+@@ -628,7 +628,7 @@ static FLAC__StreamDecoderInitStatus ini
+ 	if(0 == write_callback || 0 == error_callback)
+ 		return decoder->protected_->state = FLAC__STREAM_DECODER_INIT_STATUS_INVALID_CALLBACKS;
+ 
+-	file = filename? fopen(filename, "rb") : stdin;
++	file = filename? fopen(filename, "rbe") : stdin;
+ 
+ 	if(0 == file)
+ 		return FLAC__STREAM_DECODER_INIT_STATUS_ERROR_OPENING_FILE;
+--- src/libFLAC/stream_encoder.c.orig
++++ src/libFLAC/stream_encoder.c
+@@ -1283,7 +1283,7 @@ static FLAC__StreamEncoderInitStatus ini
+ 	if(encoder->protected_->state != FLAC__STREAM_ENCODER_UNINITIALIZED)
+ 		return FLAC__STREAM_ENCODER_INIT_STATUS_ALREADY_INITIALIZED;
+ 
+-	file = filename? fopen(filename, "w+b") : stdout;
++	file = filename? fopen(filename, "w+be") : stdout;
+ 
+ 	if(file == 0) {
+ 		encoder->protected_->state = FLAC__STREAM_ENCODER_IO_ERROR;
