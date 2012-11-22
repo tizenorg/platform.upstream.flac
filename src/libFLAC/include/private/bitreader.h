@@ -80,11 +80,11 @@ FLAC__bool FLAC__bitreader_skip_byte_block_aligned_no_crc(FLAC__BitReader *br, u
 FLAC__bool FLAC__bitreader_read_byte_block_aligned_no_crc(FLAC__BitReader *br, FLAC__byte *val, unsigned nvals); /* WATCHOUT: does not CRC the read data! */
 FLAC__bool FLAC__bitreader_read_unary_unsigned(FLAC__BitReader *br, unsigned *val);
 FLAC__bool FLAC__bitreader_read_rice_signed(FLAC__BitReader *br, int *val, unsigned parameter);
-FLAC__bool FLAC__bitreader_read_rice_signed_block(FLAC__BitReader *br, int vals[], unsigned nvals, unsigned parameter);
+FLAC__bool __attribute__((__hot__)) FLAC__bitreader_read_rice_signed_block(FLAC__BitReader *br, int vals[], unsigned nvals, unsigned parameter);
 #ifndef FLAC__NO_ASM
 #  ifdef FLAC__CPU_IA32
 #    ifdef FLAC__HAS_NASM
-FLAC__bool FLAC__bitreader_read_rice_signed_block_asm_ia32_bswap(FLAC__BitReader *br, int vals[], unsigned nvals, unsigned parameter);
+FLAC__bool __attribute__((__hot__)) FLAC__bitreader_read_rice_signed_block_asm_ia32_bswap(FLAC__BitReader *br, int vals[], unsigned nvals, unsigned parameter);
 #    endif
 #  endif
 #endif

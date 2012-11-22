@@ -48,10 +48,14 @@
 #define FLaC__INLINE
 #endif
 
+#define FLAC_ATTR_MALLOC __attribute__((__malloc__))
+#define FLAC_ATTR_ALLOC_SIZE(n) __attribute__((alloc_size(n)))
+#define FLAC_ATTR_ALLOC_SIZE2(x,y) __attribute__((alloc_size(x,y))) 
+
 /* avoid malloc()ing 0 bytes, see:
  * https://www.securecoding.cert.org/confluence/display/seccode/MEM04-A.+Do+not+make+assumptions+about+the+result+of+allocating+0+bytes?focusedCommentId=5407003
 */
-static FLaC__INLINE void *safe_malloc_(size_t size)
+static FLAC_ATTR_MALLOC FLAC_ATTR_ALLOC_SIZE(1) FLaC__INLINE void *safe_malloc_(size_t size)
 {
 	/* malloc(0) is undefined; FLAC src convention is to always allocate */
 	if(!size)
@@ -59,7 +63,7 @@ static FLaC__INLINE void *safe_malloc_(size_t size)
 	return malloc(size);
 }
 
-static FLaC__INLINE void *safe_calloc_(size_t nmemb, size_t size)
+static FLAC_ATTR_MALLOC FLAC_ATTR_ALLOC_SIZE2(1,2) FLaC__INLINE void *safe_calloc_(size_t nmemb, size_t size)
 {
 	if(!nmemb || !size)
 		return malloc(1); /* malloc(0) is undefined; FLAC src convention is to always allocate */

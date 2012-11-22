@@ -20,7 +20,7 @@ XMMS_DIRS = plugin_common plugin_xmms
 endif
 
 if FLaC__WITH_CPPLIBS
-CPPLIBS_DIRS = libFLAC++ test_libFLAC++
+CPPLIBS_DIRS = libFLAC++
 endif
 
 SUBDIRS = \
@@ -31,11 +31,6 @@ SUBDIRS = \
 	monkeys_audio_utilities \
 	$(XMMS_DIRS) \
 	plugin_winamp2 \
-	test_grabbag \
-	test_libs_common \
-	test_libFLAC \
-	test_seeking \
-	test_streams \
 	$(CPPLIBS_DIRS)
 
 EXTRA_DIST = \

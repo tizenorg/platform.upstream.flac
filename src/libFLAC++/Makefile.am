@@ -45,8 +45,9 @@ EXTRA_DIST = \
 	libFLAC++_static.vcproj \
 	libFLAC++.m4
 
+libFLAC___la_CXXFLAGS= -fvisibility=hidden -fvisibility-inlines-hidden 
 # see 'http://www.gnu.org/software/libtool/manual.html#Libtool-versioning' for numbering convention
-libFLAC___la_LDFLAGS = -version-info 8:0:2
+libFLAC___la_LDFLAGS = -Wl,-Bsymbolic-functions -no-undefined -version-info 8:0:2
 libFLAC___la_LIBADD = ../libFLAC/libFLAC.la
 
 libFLAC___la_SOURCES = \

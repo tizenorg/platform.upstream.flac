@@ -56,7 +56,7 @@
  */
 
 #if defined(FLAC__NO_DLL) || !defined(_MSC_VER)
-#define FLAC_API
+#define FLAC_API __attribute__ ((visibility ("default")))
 
 #else
 
