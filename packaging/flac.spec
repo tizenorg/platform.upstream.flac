@@ -14,17 +14,6 @@ Summary:        Free Lossless Audio Codec
 Url:            http://flac.sourceforge.net/
 Group:          Productivity/Multimedia/Sound/Utilities
 Source:         %{name}-%{version}.tar.bz2
-Patch0:         flac-no-xmms.diff
-Patch1:         flac-printf-format-fix.diff
-Patch2:         flac-gcc43-fixes.diff
-Patch3:         flac-1.2.1-asm.patch
-Patch4:         flac-1.2.1-bitreader.patch
-Patch5:         flac-ocloexec.patch
-Patch6:         flac-visibility.patch
-Patch7:         flac-leaks.patch
-Patch8:         flac-disable-hidden-visibility-for-ppc.patch
-Patch9:         flac-gcc47.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 FLAC is an open source lossless audio codec developed by Josh Coalson.
@@ -59,15 +48,6 @@ FLAC library.
 
 %prep
 %setup -q
-%patch0
-%patch1
-%patch2
-%patch3 -p1
-%patch4
-%patch5
-%patch6
-%patch7
-%patch9 -p1
 
 %build
 autoreconf --force --install
