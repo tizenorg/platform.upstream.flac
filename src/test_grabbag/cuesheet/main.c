@@ -115,12 +115,12 @@ int main(int argc, char *argv[])
 	const char *usage = "usage: test_cuesheet cuesheet_file lead_out_offset [ cdda ]\n";
 
 	if(argc > 1 && 0 == strcmp(argv[1], "-h")) {
-		printf(usage);
+		fputs(usage, stdout);
 		return 0;
 	}
 
 	if(argc < 3 || argc > 4) {
-		fprintf(stderr, usage);
+		fputs(usage, stderr);
 		return 255;
 	}
 
@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 		if(0 == strcmp(argv[3], "cdda"))
 			is_cdda = true;
 		else {
-			fprintf(stderr, usage);
+			fputs(usage, stderr);
 			return 255;
 		}
 	}
