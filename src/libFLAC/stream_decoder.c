@@ -628,7 +628,7 @@ static FLAC__StreamDecoderInitStatus init_file_internal_(
 	if(0 == write_callback || 0 == error_callback)
 		return decoder->protected_->state = FLAC__STREAM_DECODER_INIT_STATUS_INVALID_CALLBACKS;
 
-	file = filename? fopen(filename, "rb") : stdin;
+	file = filename? fopen(filename, "rbe") : stdin;
 
 	if(0 == file)
 		return FLAC__STREAM_DECODER_INIT_STATUS_ERROR_OPENING_FILE;

@@ -438,10 +438,10 @@ static FLAC__bool simple_iterator_prime_input_(FLAC__Metadata_SimpleIterator *it
 
 	FLAC__ASSERT(0 != iterator);
 
-	if(read_only || 0 == (iterator->file = fopen(iterator->filename, "r+b"))) {
+	if(read_only || 0 == (iterator->file = fopen(iterator->filename, "r+be"))) {
 		iterator->is_writable = false;
 		if(read_only || errno == EACCES) {
-			if(0 == (iterator->file = fopen(iterator->filename, "rb"))) {
+			if(0 == (iterator->file = fopen(iterator->filename, "rbe"))) {
 				iterator->status = FLAC__METADATA_SIMPLE_ITERATOR_STATUS_ERROR_OPENING_FILE;
 				return false;
 			}
@@ -1380,7 +1380,7 @@ static FLAC__bool chain_rewrite_metadata_in_place_(FLAC__Metadata_Chain *chain)
 
 	FLAC__ASSERT(0 != chain->filename);
 
-	if(0 == (file = fopen(chain->filename, "r+b"))) {
+	if(0 == (file = fopen(chain->filename, "r+be"))) {
 		chain->status = FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE;
 		return false;
 	}
@@ -1405,7 +1405,7 @@ static FLAC__bool chain_rewrite_file_(FLAC__Metadata_Chain *chain, const char *t
 	FLAC__ASSERT(0 != chain->head);
 
 	/* copy the file prefix (data up to first metadata block */
-	if(0 == (f = fopen(chain->filename, "rb"))) {
+	if(0 == (f = fopen(chain->filename, "rbe"))) {
 		chain->status = FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE;
 		return false;
 	}
@@ -1542,7 +1542,7 @@ static FLAC__bool chain_read_(FLAC__Metadata_Chain *chain, const char *filename,
 
 	chain->is_ogg = is_ogg;
 
-	if(0 == (file = fopen(filename, "rb"))) {
+	if(0 == (file = fopen(filename, "rbe"))) {
 		chain->status = FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE;
 		return false;
 	}
@@ -3240,7 +3240,7 @@ FLAC__bool open_tempfile_(const char *filename, const char *tempfile_path_prefix
 		strcat(*tempfilename, tempfile_suffix);
 	}
 
-	if(0 == (*tempfile = fopen(*tempfilename, "w+b"))) {
+	if(0 == (*tempfile = fopen(*tempfilename, "w+be"))) {
 		*status = FLAC__METADATA_SIMPLE_ITERATOR_STATUS_ERROR_OPENING_FILE;
 		return false;
 	}
