@@ -12,7 +12,7 @@ Release:        0
 License:        BSD-3-Clause
 Summary:        Free Lossless Audio Codec
 Url:            http://flac.sourceforge.net/
-Group:          Productivity/Multimedia/Sound/Utilities
+Group:          Multimedia/Audio
 Source:         %{name}-%{version}.tar.bz2
 
 %description
@@ -20,7 +20,6 @@ FLAC is an open source lossless audio codec developed by Josh Coalson.
 
 %package -n libflac
 Summary:        Free Lossless Audio Codec Library
-Group:          System/Libraries
 
 %description -n libflac
 This package contains the library for FLAC (Free Lossless Audio Codec)
@@ -28,7 +27,6 @@ developed by Josh Coalson.
 
 %package -n libflac++
 Summary:        Free Lossless Audio Codec Library
-Group:          System/Libraries
 
 %description -n libflac++
 This package contains the C++ library for FLAC (Free Lossless Audio
@@ -36,7 +34,6 @@ Codec) developed by Josh Coalson.
 
 %package devel
 Summary:        FLAC Library Development Package
-Group:          Development/Libraries/C and C++
 Requires:       glibc-devel
 Requires:       libflac = %{version}
 Requires:       libflac = %{version}
@@ -65,10 +62,7 @@ make %{?_smp_mflags}
 
 %install
 %make_install
-# documents
-mkdir -p %{buildroot}%{_docdir}
-mv %{buildroot}%{_datadir}/doc/%{name}-%{version} %{buildroot}%{_docdir}/%{name}
-cp -a AUTHORS README COPYING.* %{buildroot}%{_docdir}/%{name}
+rm -rf %{buildroot}%{_datadir}/doc/%{name}-%{version}
 
 %post -n libflac -p /sbin/ldconfig
 
@@ -80,7 +74,7 @@ cp -a AUTHORS README COPYING.* %{buildroot}%{_docdir}/%{name}
 
 %files
 %defattr(-, root, root)
-%doc %{_docdir}/%{name}
+%license  COPYING.*
 %{_bindir}/*
 %{_mandir}/man*/*
 
