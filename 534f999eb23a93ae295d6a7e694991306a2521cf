@@ -1,0 +1,10 @@
+Change-Id: I534f999eb23a93ae295d6a7e694991306a2521cf
+Code-Review+1: Patrick McCarty <patrick.mccarty@linux.intel.com>
+Code-Review+2: Anas Nashif <anas.nashif@intel.com>
+Verified+1: Anas Nashif <anas.nashif@intel.com>
+Code-Review+1: William Douglas <william.douglas@intel.com>
+Submitted-by: Anas Nashif <anas.nashif@intel.com>
+Submitted-at: Thu, 27 Jun 2013 11:37:35 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4295
+Project: platform/upstream/flac
+Branch: refs/heads/tizen
