@@ -14,6 +14,7 @@ Summary:        Free Lossless Audio Codec
 Url:            http://flac.sourceforge.net/
 Group:          Multimedia/Audio
 Source:         %{name}-%{version}.tar.bz2
+Source1001: 	flac.manifest
 
 %description
 FLAC is an open source lossless audio codec developed by Josh Coalson.
@@ -45,6 +46,7 @@ FLAC library.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 autoreconf --force --install
@@ -73,20 +75,24 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}-%{version}
 %postun -n libflac++ -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %license  COPYING.*
 %{_bindir}/*
 %{_mandir}/man*/*
 
 %files -n libflac
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %{_libdir}/libFLAC.so.8*
 
 %files -n libflac++
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %{_libdir}/libFLAC++.so.6*
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %{_libdir}/lib*.so
 %{_includedir}/*
