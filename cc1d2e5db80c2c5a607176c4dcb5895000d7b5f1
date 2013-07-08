@@ -1,0 +1,8 @@
+Change-Id: Icc1d2e5db80c2c5a607176c4dcb5895000d7b5f1
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 10:08:02 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4781
+Project: platform/upstream/flac
+Branch: refs/heads/tizen
