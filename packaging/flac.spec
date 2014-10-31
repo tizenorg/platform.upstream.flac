@@ -7,14 +7,15 @@ BuildRequires:  pkg-config
 %ifarch %{ix86}
 BuildRequires:  nasm
 %endif
-Version:        1.2.1
+Version:        1.3.0
 Release:        0
 License:        BSD-3-Clause
 Summary:        Free Lossless Audio Codec
 Url:            http://flac.sourceforge.net/
+#X-Vcs-Url:     https://git.xiph.org/flac.git
 Group:          Multimedia/Audio
 Source:         %{name}-%{version}.tar.bz2
-Source1001: 	flac.manifest
+Source1001:     flac.manifest
 
 %description
 FLAC is an open source lossless audio codec developed by Josh Coalson.
@@ -49,18 +50,18 @@ FLAC library.
 cp %{SOURCE1001} .
 
 %build
-autoreconf --force --install
+%autogen
 %define warn_flags -O3 -W -Wall -Wstrict-prototypes -Wformat-security
 export CFLAGS="%{optflags} %{warn_flags}"
 export CXXFLAGS="$CFLAGS"
 %configure  --disable-thorough-tests --disable-exhaustive-tests\
-    --disable-xmms-plugin \
-	--disable-static \
-	--disable-rpath \
-	--with-pic \
-    --enable-sse
+            --disable-xmms-plugin \
+            --disable-static \
+            --disable-rpath \
+            --with-pic \
+            --enable-sse
 
-make %{?_smp_mflags}
+%__make %{?_smp_mflags}
 
 %install
 %make_install
