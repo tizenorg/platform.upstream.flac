@@ -37,8 +37,8 @@ Codec) developed by Josh Coalson.
 %package devel
 Summary:        FLAC Library Development Package
 Requires:       glibc-devel
-Requires:       libflac = %{version}
-Requires:       libflac = %{version}
+Requires:       libflac = %{version}-%{release}
+Requires:       libflac = %{version}-%{release}
 Requires:       libstdc++-devel
 
 %description devel
