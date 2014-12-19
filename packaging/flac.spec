@@ -13,7 +13,7 @@ License:        BSD-3-Clause
 Summary:        Free Lossless Audio Codec
 Url:            http://flac.sourceforge.net/
 #X-Vcs-Url:     https://git.xiph.org/flac.git
-Group:          Multimedia/Audio
+Group:          Multimedia / Audio FW
 Source:         %{name}-%{version}.tar.bz2
 Source1001:     flac.manifest
 
